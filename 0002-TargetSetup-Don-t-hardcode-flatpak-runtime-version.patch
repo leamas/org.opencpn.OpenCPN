@@ -1,0 +1,37 @@
+From c2be8fae9d1965c47ec04ec5cdc4304092a42e0a Mon Sep 17 00:00:00 2001
+From: Alec Leamas <leamas.alec@nowhere.nt>
+Date: Thu, 4 Mar 2021 23:17:44 +0100
+Subject: [PATCH] cmake/TargetSetup: Don't hardcode flatpak runtimer version
+ (#2181).
+
+Instead, get it from the manifest and use that value.
+
+Closes: #2181
+---
+ cmake/TargetSetup.cmake | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/cmake/TargetSetup.cmake b/cmake/TargetSetup.cmake
+index 1eea4ba64..1f7a2f0db 100644
+--- a/cmake/TargetSetup.cmake
++++ b/cmake/TargetSetup.cmake
+@@ -5,7 +5,15 @@
+ if (OCPN_FLATPAK)
+     set(PKG_BUILD_TARGET "flatpak")
+     set(PKG_TARGET "${PKG_BUILD_TARGET}")
+-    set(PKG_TARGET_VERSION "18.08")    # As of flatpak/*yaml
++    set(manifest_path "${PROJECT_SOURCE_DIR}/flatpak/org.opencpn.OpenCPN.yaml")
++    file(READ ${manifest_path} manifest)
++    string(REPLACE "\n" ";" manifest_lines "${manifest}")
++    foreach (_line ${manifest_lines})
++      if (${_line} MATCHES  "^runtime-version")
++        string(REGEX REPLACE ".*:" "" PKG_TARGET_VERSION "${_line}")
++      endif ()
++    endforeach ()
++    message(STATUS  "Building for flatpak runtime ${PKG_TARGET_VERSION}")
+ elseif (MINGW)
+     set(PKG_BUILD_TARGET "mingw")
+     set(PKG_TARGET "${PKG_BUILD_TARGET}")
+-- 
+2.29.2
+
