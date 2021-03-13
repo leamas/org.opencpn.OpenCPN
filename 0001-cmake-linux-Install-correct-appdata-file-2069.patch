@@ -1,7 +1,7 @@
-From 752eafb2d4d3b9035e976a39addc490d6ae02bb3 Mon Sep 17 00:00:00 2001
+From d3b7d81497150ce0976cdfe3ee222860df6805ac Mon Sep 17 00:00:00 2001
 From: Alec Leamas <leamas.alec@nowhere.nt>
 Date: Wed, 21 Oct 2020 16:13:37 +0200
-Subject: [PATCH] cmake: linux: Install correct appdata file (#2069).
+Subject: [PATCH 1/5] cmake: linux: Install correct appdata file (#2069).
 
 Reverting to use opencpn.appdata.xml instead of opencpn.metainfo.xml,
 the use of metainfo.xml is premature.
@@ -43,5 +43,5 @@ index 6c67a171e..c6fc36c43 100755
 -appstreamcli validate app/files/share/appdata/org.opencpn.OpenCPN.appdata.xml
 +appstreamcli validate app/files/share/metainfo/opencpn.appdata.xml
 -- 
-2.26.2
+2.29.2
 

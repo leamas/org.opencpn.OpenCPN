@@ -1,3 +1,12 @@
+From a1efe823f146ed3324deebd1be0b06031f85e395 Mon Sep 17 00:00:00 2001
+From: Alec Leamas <leamas.alec@nowhere.nt>
+Date: Sat, 13 Mar 2021 10:08:20 +0100
+Subject: [PATCH 5/5] Update screenshot image URL.
+
+---
+ data/opencpn.appdata.xml.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 diff --git a/data/opencpn.appdata.xml.in b/data/opencpn.appdata.xml.in
 index ce1552905..5e175a8b5 100644
 --- a/data/opencpn.appdata.xml.in
@@ -11,4 +20,6 @@ index ce1552905..5e175a8b5 100644
      </screenshot>
    </screenshots>
    <url type="homepage">https://opencpn.org/</url>
+-- 
+2.29.2
 

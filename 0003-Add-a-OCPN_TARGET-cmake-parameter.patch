@@ -1,12 +1,12 @@
-From 277f069b1723b753e6b39189c052eb4026be72fc Mon Sep 17 00:00:00 2001
+From a939b077d32a47ef613753c92aa33e523a7826fe Mon Sep 17 00:00:00 2001
 From: Alec Leamas <leamas.alec@nowhere.nt>
-Date: Sat, 13 Mar 2021 09:30:27 +0100
-Subject: [PATCH] Add a OCPN_TARGET configuration parameter.
+Date: Sat, 13 Mar 2021 10:05:54 +0100
+Subject: [PATCH 3/5] Add a OCPN_TARGET cmake parameter.
 
 ---
  cmake/GetArch.cmake     | 73 ++++++++++-------------------------------
- cmake/TargetSetup.cmake | 20 +++++++++--
- 2 files changed, 35 insertions(+), 58 deletions(-)
+ cmake/TargetSetup.cmake | 10 ++++--
+ 2 files changed, 25 insertions(+), 58 deletions(-)
 
 diff --git a/cmake/GetArch.cmake b/cmake/GetArch.cmake
 index 6c722a235..dddd9c6e9 100644
@@ -102,36 +102,25 @@ index 6c722a235..dddd9c6e9 100644
    set (ARCH ${ARCH} PARENT_SCOPE)
    set (PACKAGE_FORMAT ${PACKAGE_FORMAT} PARENT_SCOPE)
 diff --git a/cmake/TargetSetup.cmake b/cmake/TargetSetup.cmake
-index b394af04c..46df916a7 100644
+index e83466c9f..3f2e223f2 100644
 --- a/cmake/TargetSetup.cmake
 +++ b/cmake/TargetSetup.cmake
-@@ -2,9 +2,23 @@
- # Export variables used in plugin setup: PKG_TARGET, PKG_TARGET_VERSION
- # and PKG_NVR
+@@ -1,8 +1,12 @@
+ #
+-# Export variables used in plugin setup: PKG_TARGET, PKG_TARGET_VERSION
+-# and PKG_NVR
++# Export variables used in plugin setup: PKG_TARGET, PKG_TARGET_VERSION.
  
 -if (OCPN_FLATPAK)
--    set(PKG_TARGET "flatpak")
--    set(PKG_TARGET_VERSION "18.08")    # As of flatpak/*yaml
 +if (NOT "${OCPN_TARGET}" STREQUAL "")
 +    string(REPLACE ":" ";" _target ${OCPN_TARGET})
 +    list(GET ${_target} 0 PKG_BUILD_TARGET)
 +    list(GET ${_target} 1 PKG_TARGET_VERSION)
 +    set(PKG_TARGET "${PKG_BUILD_TARGET}")
 +elseif (OCPN_FLATPAK)
-+    set(PKG_BUILD_TARGET "flatpak")
-+    set(PKG_TARGET "${PKG_BUILD_TARGET}")
-+    set(manifest_path "${PROJECT_SOURCE_DIR}/flatpak/org.opencpn.OpenCPN.yaml")
-+    file(READ ${manifest_path} manifest)
-+    string(REPLACE "\n" ";" manifest_lines "${manifest}")
-+    foreach (_line ${manifest_lines})
-+      if (${_line} MATCHES  "^runtime-version")
-+        string(REGEX REPLACE ".*:" "" PKG_TARGET_VERSION "${_line}")
-+      endif ()
-+    endforeach ()
-+    message(STATUS  "Building for flatpak runtime ${PKG_TARGET_VERSION}")
- elseif (MINGW)
-     set(PKG_TARGET "mingw")
-     if (CMAKE_SYSTEM_VERSION)
+     set(PKG_TARGET "flatpak")
+     set(manifest_path "${PROJECT_SOURCE_DIR}/flatpak/org.opencpn.OpenCPN.yaml")
+     file(READ ${manifest_path} manifest)
 -- 
 2.29.2
 

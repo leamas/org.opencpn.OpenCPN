@@ -1,3 +1,13 @@
+From be24bf90c4f28ece66e6083b5256ee72e4f4de52 Mon Sep 17 00:00:00 2001
+From: Alec Leamas <leamas.alec@nowhere.nt>
+Date: Sat, 13 Mar 2021 10:02:50 +0100
+Subject: [PATCH 2/5] Update flatpak runtime configuration.
+
+---
+ cmake/TargetSetup.cmake          | 10 +++++++++-
+ flatpak/org.opencpn.OpenCPN.yaml |  2 +-
+ 2 files changed, 10 insertions(+), 2 deletions(-)
+
 diff --git a/cmake/TargetSetup.cmake b/cmake/TargetSetup.cmake
 index b394af04c..e83466c9f 100644
 --- a/cmake/TargetSetup.cmake
@@ -32,3 +42,6 @@ index 97a9fbb91..2d40d8696 100644
  sdk: org.freedesktop.Sdk
  command: opencpn.sh
  
+-- 
+2.29.2
+
