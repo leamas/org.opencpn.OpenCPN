@@ -70,6 +70,7 @@ modules:
           - -DOCPN_CI_BUILD=ON
           - -DOCPN_FLATPAK=ON
           - -DBUILD_SHARED_LIBS=OFF
+          - -DOCPN_TARGET="$OCPN_TARGET"
           - -DCMAKE_FIND_ROOT_PATH=/app
           - -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM=NEVER
           - -DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH
