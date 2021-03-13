@@ -1,4 +1,4 @@
-From 1bf23d6db272bb8764a7cbea86bd7b3867a62637 Mon Sep 17 00:00:00 2001
+From 55b3a410b8d24bd0dbfb838c85fae4f2a013385e Mon Sep 17 00:00:00 2001
 From: Alec Leamas <leamas.alec@nowhere.nt>
 Date: Sat, 13 Mar 2021 22:02:43 +0100
 Subject: [PATCH] isCompatible: More debug output.
@@ -8,18 +8,25 @@ Subject: [PATCH] isCompatible: More debug output.
  1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/src/PluginHandler.cpp b/src/PluginHandler.cpp
-index 532c40262..a47623cc3 100644
+index 532c40262..c6cf7cce8 100644
 --- a/src/PluginHandler.cpp
 +++ b/src/PluginHandler.cpp
-@@ -225,8 +225,12 @@ bool PluginHandler::isCompatible(const PluginMetadata& metadata,
+@@ -208,6 +208,9 @@ bool PluginHandler::isCompatible(const PluginMetadata& metadata,
+     }
+     compatOS = ocpn::tolower(compatOS);
+     compatOsVersion = ocpn::tolower(compatOsVersion);
++    wxLogDebug("isCompatible, start:  plugin arch: %s, host arch: %s",
++               metadata.target_arch.c_str(),
++               ocpn::tolower(os_detail->osd_arch.c_str()));
+     
+     //  Compare to the required values in the metadata
+     std::string plugin_os = ocpn::tolower(metadata.target);
+@@ -225,8 +228,9 @@ bool PluginHandler::isCompatible(const PluginMetadata& metadata,
      //  For linux variants....
      // If the plugin architecture is defined, we can eliminate incompatible plugins immediately
      if(metadata.target_arch.size()){
 -        if(ocpn::tolower(metadata.target_arch) != ocpn::tolower(os_detail->osd_arch))
 +        if(ocpn::tolower(metadata.target_arch) != ocpn::tolower(os_detail->osd_arch)) {
-+            wxLogDebug("isCompatible: FAIL: plugin arch: %s, host arch: %s",
-+                       metadata.target_arch.c_str(),
-+                       ocpn::tolower(os_detail->osd_arch.c_str()));
              return false;
 +        }
      }
