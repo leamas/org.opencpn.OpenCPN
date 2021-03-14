@@ -1,4 +1,4 @@
-From 55b3a410b8d24bd0dbfb838c85fae4f2a013385e Mon Sep 17 00:00:00 2001
+From 7574583adc7fac6cd121cb27eee04e5143d93bd7 Mon Sep 17 00:00:00 2001
 From: Alec Leamas <leamas.alec@nowhere.nt>
 Date: Sat, 13 Mar 2021 22:02:43 +0100
 Subject: [PATCH] isCompatible: More debug output.
@@ -8,16 +8,16 @@ Subject: [PATCH] isCompatible: More debug output.
  1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/src/PluginHandler.cpp b/src/PluginHandler.cpp
-index 532c40262..c6cf7cce8 100644
+index 532c40262..6e0cdb01a 100644
 --- a/src/PluginHandler.cpp
 +++ b/src/PluginHandler.cpp
 @@ -208,6 +208,9 @@ bool PluginHandler::isCompatible(const PluginMetadata& metadata,
      }
      compatOS = ocpn::tolower(compatOS);
      compatOsVersion = ocpn::tolower(compatOsVersion);
-+    wxLogDebug("isCompatible, start:  plugin arch: %s, host arch: %s",
-+               metadata.target_arch.c_str(),
-+               ocpn::tolower(os_detail->osd_arch.c_str()));
++    DEBUG_LOG << "isCompatible, start: "
++        << "plugin arch: " << metadata.target_arch.c_str()
++        << " host arch: " << ocpn::tolower(os_detail->osd_arch.c_str());
      
      //  Compare to the required values in the metadata
      std::string plugin_os = ocpn::tolower(metadata.target);
