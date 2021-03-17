@@ -93,24 +93,10 @@ modules:
           - install -Dm 755 ../data/opencpn.sh /app/bin/opencpn.sh
       sources:
           - type: git
-            # url: https://github.com/OpenCPN/OpenCPN.git
-            # tag: Release_5.2.4
-            url: https://github.com/leamas/OpenCPN.git
+            url: https://github.com/OpenCPN/OpenCPN.git
             branch: master
             disable-fsckobjects: true
           - type: patch
             path: 0004-flatpak-Add-a-shell-wrapper.patch
           - type: patch
             path: 0007-Set-20.08-runtime-version.patch
-          - type: patch
-            path: 0008-fix-flatpak-target.patch
-            # - type: patch
-            #   path: 0001-cmake-linux-Install-correct-appdata-file-2069.patch
-            # - type: patch
-            #   path: 0002-Update-flatpak-runtime-configuration.patch
-            # - type: patch
-            #   path: 0003-Add-a-OCPN_TARGET-cmake-parameter.patch
-            # - type: patch
-            #   path: 0005-Update-screenshot-image-URL.patch
-            # - type: patch
-            #   path: 0006-isCompatible-More-debug-output.patch
