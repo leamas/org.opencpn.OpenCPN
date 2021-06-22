@@ -94,3 +94,5 @@ modules:
             path: 0002-flatpak-Add-a-shell-wrapper.patch
           - type: patch
             path: 0003-appdata-screenshot-url.patch
+          - type: patch
+            path: 0004-Add-warning-message-for-aarch64.patch
