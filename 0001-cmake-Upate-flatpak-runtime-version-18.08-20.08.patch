@@ -1,0 +1,39 @@
+From cff45922784606a6dd68460d38f09e8603c41df1 Mon Sep 17 00:00:00 2001
+From: Alec Leamas <leamas.alec@nowhere.nt>
+Date: Sun, 18 Jul 2021 19:42:38 +0200
+Subject: [PATCH] cmake: Upate flatpak runtime version, 18.08 -> 20.08
+
+---
+ cmake/TargetSetup.cmake          | 2 +-
+ flatpak/org.opencpn.OpenCPN.yaml | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/cmake/TargetSetup.cmake b/cmake/TargetSetup.cmake
+index b394af04c..2ab19c777 100644
+--- a/cmake/TargetSetup.cmake
++++ b/cmake/TargetSetup.cmake
+@@ -4,7 +4,7 @@
+ 
+ if (OCPN_FLATPAK)
+     set(PKG_TARGET "flatpak")
+-    set(PKG_TARGET_VERSION "18.08")    # As of flatpak/*yaml
++    set(PKG_TARGET_VERSION "20.08")    # As of flatpak/*yaml
+ elseif (MINGW)
+     set(PKG_TARGET "mingw")
+     if (CMAKE_SYSTEM_VERSION)
+diff --git a/flatpak/org.opencpn.OpenCPN.yaml b/flatpak/org.opencpn.OpenCPN.yaml
+index 97a9fbb91..2d40d8696 100644
+--- a/flatpak/org.opencpn.OpenCPN.yaml
++++ b/flatpak/org.opencpn.OpenCPN.yaml
+@@ -12,7 +12,7 @@
+ 
+ app-id: org.opencpn.OpenCPN
+ runtime: org.freedesktop.Platform
+-runtime-version: 18.08
++runtime-version: 20.08
+ sdk: org.freedesktop.Sdk
+ command: opencpn.sh
+ 
+-- 
+2.30.2
+
