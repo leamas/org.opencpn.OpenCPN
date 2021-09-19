@@ -86,7 +86,7 @@ modules:
                       OCPN_TARGET: aarch64:20.08
               x86_64:
                   env:
-                      OCPN_TARGET: x86_64:18.08
+                      OCPN_TARGET: x86_64:20.08
       post-install:
           - install -d /app/extensions
           - sed -i '/^Exec=/s/=.*/=opencpn.sh/' /app/share/applications/opencpn.desktop
@@ -99,5 +99,3 @@ modules:
             disable-fsckobjects: true
           - type: patch
             path: 0004-flatpak-Add-a-shell-wrapper.patch
-          - type: patch
-            path: 0007-Set-20.08-runtime-version.patch
