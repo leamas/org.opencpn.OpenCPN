@@ -122,7 +122,7 @@ modules:
           - type: git
             url: https://github.com/OpenCPN/OpenCPN.git
             # branch: master
-            commit: 96e29a4
+            tag: 0.5.6-beta1
             disable-fsckobjects: true
           - type: patch
             path: 0004-flatpak-Add-a-shell-wrapper.patch
