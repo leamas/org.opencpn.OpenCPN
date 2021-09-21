@@ -23,7 +23,7 @@ Making a new release
       after the push and takes around 15 minutes.
    6. Using the login drop-down top-right, login using "Login with Github"
    7. If the build fails, it must be fixed... edit, commit and push again.
-      Build logs ar available after pushing the leftmost, 5-digit build
+      Build logs are available after pushing the leftmost, 5-digit build
       number button
    8. When the build is OK, the build number button becomes green. Push it.
    9. The view of the build contains
@@ -55,7 +55,13 @@ The build:
 
   5. If the submodule update ended up in a change visible using
      `git diff`, commit it.
-  6. Build using
+  6. Locate the runtime version used in the org.opencpn.OpenCPN.yaml 
+     manifest. At the time of writing, this is 20.08.
+  7. Using the correct runtime version, install the build dependencies:
+
+         $ flatpak install  org.freedesktop.Sdk//20.08
+
+  8. Build using
 
          $ flatpak-builder --force-clean app org.opencpn.OpenCPN.yaml 
 
