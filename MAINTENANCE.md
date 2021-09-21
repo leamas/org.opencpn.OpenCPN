@@ -4,7 +4,7 @@ Making a new release
    1. Clone this repo
    2. Checkout correct branch, _stable_ or _beta_
    3. Patch the manifest to refer to the proper OpnCPN commit, something
-     like
+      like
 ```
         --- a/org.opencpn.OpenCPN.yaml
         +++ b/org.opencpn.OpenCPN.yaml
@@ -21,7 +21,7 @@ Making a new release
    4. Commit and push the change
    5. Go to https://flathub.org/builds. The build starts automatically
       after the push and takes around 15 minutes.
-   6. Using top login drop-down top-right, login using "Login with Github"
+   6. Using the login drop-down top-right, login using "Login with Github"
    7. If the build fails, it must be fixed... edit, commit and push again.
       Build logs ar available after pushing the leftmost, 5-digit build
       number button
