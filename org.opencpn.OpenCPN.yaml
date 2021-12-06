@@ -89,8 +89,6 @@ modules:
             tag: Release_5.6.0
             disable-fsckobjects: true
           - type: patch
-            path: 0001-cmake-linux-Install-correct-appdata-file-2069.patch
-          - type: patch
             path: 0002-flatpak-Add-a-shell-wrapper.patch
           - type: patch
             path: 0003-appdata-screenshot-url.patch
