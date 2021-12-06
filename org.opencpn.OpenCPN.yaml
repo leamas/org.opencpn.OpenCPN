@@ -6,7 +6,7 @@
 # (at your option) any later version.
 #
 
-# This manifest is used to build the official flathub package. 
+# This manifest is used to build the official flathub package.
 
 
 app-id: org.opencpn.OpenCPN
@@ -86,7 +86,7 @@ modules:
       sources:
           - type: git
             url: https://github.com/OpenCPN/OpenCPN.git
-            tag: Release_5.2.4
+            tag: Release_5.6.0
             disable-fsckobjects: true
           - type: patch
             path: 0001-cmake-linux-Install-correct-appdata-file-2069.patch
