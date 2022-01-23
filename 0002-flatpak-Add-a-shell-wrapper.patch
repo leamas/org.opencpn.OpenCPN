@@ -1,7 +1,7 @@
-From 5bd0c0d9287b1308350e7d45b8fbef7c5f045e2d Mon Sep 17 00:00:00 2001
+From 0ef7d9ef5f4ce1d8c03294ea198f54a18f826e63 Mon Sep 17 00:00:00 2001
 From: Alec Leamas <leamas@nowhere.net>
 Date: Fri, 3 Aug 2018 18:50:08 +0200
-Subject: [PATCH 4/5] flatpak: Add a shell wrapper.
+Subject: [PATCH] flatpak: Add a shell wrapper.
 
 ---
  data/opencpn.sh | 6 ++++++
@@ -10,7 +10,7 @@ Subject: [PATCH 4/5] flatpak: Add a shell wrapper.
 
 diff --git a/data/opencpn.sh b/data/opencpn.sh
 new file mode 100644
-index 000000000..a9bc4ef38
+index 00000000..a9bc4ef3
 --- /dev/null
 +++ b/data/opencpn.sh
 @@ -0,0 +1,6 @@
@@ -21,5 +21,5 @@ index 000000000..a9bc4ef38
 +
 +exec opencpn $@
 -- 
-2.29.2
+2.17.1
 

@@ -42,6 +42,7 @@ modules:
       config-opts:
         - --disable-static
         - --disable-udev
+        - --prefix=/app
       sources:
         - type: archive
           url: https://github.com/libusb/libusb/archive/v1.0.22.tar.gz
@@ -125,4 +126,4 @@ modules:
             tag: Beta_5.5.1129
             disable-fsckobjects: true
           - type: patch
-            path: 0004-flatpak-Add-a-shell-wrapper.patch
+            path: 0002-flatpak-Add-a-shell-wrapper.patch
