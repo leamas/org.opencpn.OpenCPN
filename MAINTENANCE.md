@@ -63,24 +63,10 @@ The build:
 
   8. Build using
 
-         $ flatpak-builder --force-clean app org.opencpn.OpenCPN.yaml 
+        $ flatpak-builder --repo=repo --force-clean --default-branch=devel \
+          app org.opencpn.OpenCPN.yaml 
 
+  9. Test using
 
-Testing a local build
----------------------
-Applicable after making a build according to above, which creates an 
-application directory named _app_.
-
-Create a temporary test remote:
-
-    $ flatpak build-export repo app
-    $ flatpak remote-add --user --no-gpg-verify --if-not-exists build-repo repo
-
-Install application from remote:
-
-    $ flatpak --user install build-repo org.opencpn.OpenCPN
-
-Run the correct version:
-
-    $ flatpak list
-    $ flatpak run org.opencpn.OpenCPN//master
+        $ flatpak install -y --user --reinstall repo org.opencpn.OpenCPN
+        $ flatpak run org.opencpn.OpenCPN//devel
