@@ -75,6 +75,15 @@ modules:
           - type: git
             url: https://github.com/wxWidgets/wxWidgets.git
             tag: v3.1.5
+          - type: patch
+            path: wx/0001-Fix-wxGTK-build-after-WXSetInitialFittingClientSize-.patch
+          - type: patch
+            path: wx/0002-Make-wxSizer-SetSizeHints-work-again.patch
+          - type: patch
+            path: wx/Fix-missing-mouse-events-when-using-gesture-events-i.patch
+          - type: patch
+            path: wx/warn-for-compiler-abi-mismatch.patch
+
       config-opts:
           - --with-gtk=3
           - --with-opengl
