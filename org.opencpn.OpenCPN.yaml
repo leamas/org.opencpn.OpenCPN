@@ -9,7 +9,6 @@
 # This manifest is used to build the official flathub package.
 
 
----
 app-id: org.opencpn.OpenCPN
 runtime: org.freedesktop.Platform
 runtime-version: "20.08"
@@ -98,7 +97,6 @@ modules:
           - -DOCPN_CI_BUILD=ON
           - -DOCPN_FLATPAK=ON
           - -DBUILD_SHARED_LIBS=OFF
-          - -DOCPN_TARGET="$OCPN_TARGET"
           - -DCMAKE_FIND_ROOT_PATH=/app
           - -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM=NEVER
           - -DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH
@@ -107,14 +105,7 @@ modules:
           cxxflags: -DFLATPAK
           cflags: -DFLATPAK
           env:
-              BUILD_NUMBER: "0"
-          arch:
-              aarch64:
-                  env:
-                      OCPN_TARGET: aarch64:20.08
-              x86_64:
-                  env:
-                      OCPN_TARGET: x86_64:20.08
+            BUILD_NUMBER: "0"
       post-install:
           - install -d /app/extensions
           - sed -i '/^Exec=/s/=.*/=opencpn.sh/' /app/share/applications/opencpn.desktop
@@ -122,8 +113,7 @@ modules:
       sources:
           - type: git
             url: https://github.com/OpenCPN/OpenCPN.git
-            # branch: master
-            tag: Beta_5.5.1129
+            tag: Release_5.6.0
             disable-fsckobjects: true
           - type: patch
             path: 0002-flatpak-Add-a-shell-wrapper.patch
