@@ -68,6 +68,7 @@ application directory named _app_.
 Create a temporary test remote:
 
     $ flatpak build-export repo app
+    $ flatpak remote-delete build-repo
     $ flatpak remote-add --user --no-gpg-verify --if-not-exists build-repo repo
 
 Install application from remote:
