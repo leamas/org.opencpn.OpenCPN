@@ -18,22 +18,24 @@ Making a new release
                    - type: patch
                      path: 0004-flatpak-Add-a-shell-wrapper.patch
 ```
-   4. Commit and push the change
-   5. Go to https://flathub.org/builds. The build starts automatically
+   4. Update the manifest's OCPN\_RELEASE option to reflect actual release
+      (set to 0 when there is a new commit or tag as of above).
+   5. Commit and push the change
+   6. Go to https://flathub.org/builds. The build starts automatically
       after the push and takes around 15 minutes.
-   6. Using the login drop-down top-right, login using "Login with Github"
-   7. If the build fails, it must be fixed... edit, commit and push again.
-      Build logs are available after pushing the leftmost, 5-digit build
+   7. Using the login drop-down top-right, login using "Login with Github"
+   8. If the build fails, it must be fixed... edit, commit and push again.
+      Build logs ar available after pushing the leftmost, 5-digit build
       number button
-   8. When the build is OK, the build number button becomes green. Push it.
-   9. The view of the build contains
+   9. When the build is OK, the build number button becomes green. Push it.
+  10. The view of the build contains
         - A link to the test repo at bottom. Make a smoke test to make sure
           it is sane
         - Three buttons top-right Rebuild, Publish, Delete. If the build is
           OK, push the Publish button, otherwise Delete.
       NOTE: If nothing is done, the test build is eventually automatically
       published after around a week (200 hours).
-  10. Please update this document as required.
+  11. Please update this document as required.
 
 
 Making a local build
@@ -55,18 +57,27 @@ The build:
 
   5. If the submodule update ended up in a change visible using
      `git diff`, commit it.
-  6. Locate the runtime version used in the org.opencpn.OpenCPN.yaml 
-     manifest. At the time of writing, this is 20.08.
-  7. Using the correct runtime version, install the build dependencies:
+  6. Build using
 
-         $ flatpak install  org.freedesktop.Sdk//20.08
+         $ flatpak-builder --force-clean app org.opencpn.OpenCPN.yaml 
 
-  8. Build using
 
-        $ flatpak-builder --repo=repo --force-clean --default-branch=devel \
-          app org.opencpn.OpenCPN.yaml 
+Testing a local build
+---------------------
+Applicable after making a build according to above, which creates an 
+application directory named _app_.
 
-  9. Test using
+Create a temporary test remote:
 
-        $ flatpak install -y --user --reinstall repo org.opencpn.OpenCPN
-        $ flatpak run org.opencpn.OpenCPN//devel
+    $ flatpak build-export repo app
+    $ flatpak remote-delete build-repo
+    $ flatpak remote-add --user --no-gpg-verify --if-not-exists build-repo repo
+
+Install application from remote:
+
+    $ flatpak --user install build-repo org.opencpn.OpenCPN
+
+Run the correct version:
+
+    $ flatpak list
+    $ flatpak run org.opencpn.OpenCPN//master
