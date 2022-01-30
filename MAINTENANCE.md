@@ -18,22 +18,24 @@ Making a new release
                    - type: patch
                      path: 0004-flatpak-Add-a-shell-wrapper.patch
 ```
-   4. Commit and push the change
-   5. Go to https://flathub.org/builds. The build starts automatically
+   4. Update the manifest's OCPN\_RELEASE option to reflect actual release
+      (set to 0 when there is a new commit or tag as of above).
+   5. Commit and push the change
+   6. Go to https://flathub.org/builds. The build starts automatically
       after the push and takes around 15 minutes.
-   6. Using the login drop-down top-right, login using "Login with Github"
-   7. If the build fails, it must be fixed... edit, commit and push again.
+   7. Using the login drop-down top-right, login using "Login with Github"
+   8. If the build fails, it must be fixed... edit, commit and push again.
       Build logs ar available after pushing the leftmost, 5-digit build
       number button
-   8. When the build is OK, the build number button becomes green. Push it.
-   9. The view of the build contains
+   9. When the build is OK, the build number button becomes green. Push it.
+  10. The view of the build contains
         - A link to the test repo at bottom. Make a smoke test to make sure
           it is sane
         - Three buttons top-right Rebuild, Publish, Delete. If the build is
           OK, push the Publish button, otherwise Delete.
       NOTE: If nothing is done, the test build is eventually automatically
       published after around a week (200 hours).
-  10. Please update this document as required.
+  11. Please update this document as required.
 
 
 Making a local build
