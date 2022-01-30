@@ -7,6 +7,8 @@ This is a very basic patch. An addition to the test for serinfo.type
 which fails on kernels > 5.12 it approves any device with DSR or CTS
 hardware lines set. It also checks for paths like ttyS2, ttyUSB1 or
 ttyACM0 which all also are approved.
+
+Applied-upstream: https://github.com/OpenCPN/OpenCPN/commit/1d151abc31b
 ---
  src/ser_ports.cpp | 62 ++++++++++++++++++++++++++++++++++++++---------
  1 file changed, 50 insertions(+), 12 deletions(-)

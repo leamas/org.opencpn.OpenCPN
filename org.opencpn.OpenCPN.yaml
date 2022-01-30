@@ -77,6 +77,7 @@ modules:
           - -DOCPN_BUNDLE_DOCS=ON
           - -DOCPN_BUNDLE_TCDATA=ON
           - -DOCPN_CI_BUILD=ON
+          - -DOCPN_RELEASE=2
           - -DOCPN_FLATPAK=ON
           - -DOCPN_USE_SYSFS_PORTS=ON
           - -DBUILD_SHARED_LIBS=OFF
@@ -102,3 +103,5 @@ modules:
             path: 0002-flatpak-Add-a-shell-wrapper.patch
           - type: patch
             path: 0003-ser_ports.cpp-Handle-kernel-interface-changes-2528.patch
+          - type: patch
+            path: 0004-CMakeLists-Add-a-OCPN_RELEASE-option.patch
