@@ -36,6 +36,7 @@ add-extensions:
 
 modules:
     - shared-modules/glu/glu-9.json
+
     - name: libusb
       config-opts:
         - --disable-static
@@ -52,20 +53,22 @@ modules:
             sha256: f5a21d7dcd6ee84397446fa1fa1a0675bb2e8a4a6dceb4305a8404698d8d1513
       config-opts:
           - --disable-static
+
     - name: wxGTK3
       sources:
-          - type: git
-            url: https://github.com/wxWidgets/wxWidgets.git
-            tag: v3.1.5
+          - type: archive
+            url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.tar.bz2
+            sha256: d7b3666de33aa5c10ea41bb9405c40326e1aeb74ee725bb88f90f1d50270a224
           - type: patch
-            path: wx/0001-Fix-wxGTK-build-after-WXSetInitialFittingClientSize-.patch
+            path: 0100-doxyfile-update.patch
           - type: patch
-            path: wx/0002-Make-wxSizer-SetSizeHints-work-again.patch
+            path: 0101-Fix-missing-mouse-events-when-using-gesture-events.patch
           - type: patch
-            path: wx/Fix-missing-mouse-events-when-using-gesture-events-i.patch
+            path: 0102-warn-for-compiler-abi-mismatch.patch
           - type: patch
-            path: wx/warn-for-compiler-abi-mismatch.patch
-
+            path: 0103-Fix-wxGTK-build-after-WXSetInitialFittingClientSize.patch
+          - type: patch
+            path: 0104-Make-wxSizer-SetSizeHints-work-again.patch
       config-opts:
           - --with-gtk=3
           - --with-opengl
@@ -77,6 +80,12 @@ modules:
       cleanup:
           - /include/
 
+    - name:  zlib
+      sources:
+          - type: archive
+            url: http://zlib.net/zlib-1.2.11.tar.gz
+            sha256: c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1
+
     - name: opencpn
       buildsystem: cmake
       builddir: true
@@ -84,10 +93,11 @@ modules:
           - -DOCPN_BUNDLE_DOCS=ON
           - -DOCPN_BUNDLE_TCDATA=ON
           - -DOCPN_CI_BUILD=ON
-          - -DOCPN_RELEASE=2
+          - -DOCPN_RELEASE=1.wx315
           - -DOCPN_FLATPAK=ON
           - -DOCPN_USE_SYSFS_PORTS=ON
           - -DBUILD_SHARED_LIBS=OFF
+          - -DOCPN_TARGET_TUPLE=flatpak-x86_64-wx315;20.08;x86_64
           - -DCMAKE_FIND_ROOT_PATH=/app
           - -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM=NEVER
           - -DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH
