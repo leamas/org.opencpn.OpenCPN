@@ -86,15 +86,30 @@ modules:
             url: http://zlib.net/zlib-1.2.11.tar.gz
             sha256: c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1
 
+    - name: portaudio
+      config-opts:
+          - --disable-static
+          - --without-oss
+          - --without-jack
+      sources:
+          - type: archive
+            url: http://www.portaudio.com/archives/pa_stable_v190600_20161030.tgz
+            sha256: f5a21d7dcd6ee84397446fa1fa1a0675bb2e8a4a6dceb4305a8404698d8d1513
+      cleanup:
+          - /lib/pkgconfig
+          - /include
+          - '*.la'
+
     - name: opencpn
       buildsystem: cmake
       builddir: true
       config-opts:
+          - -DOCPN_RELEASE=1.wx315
           - -DOCPN_BUNDLE_DOCS=ON
           - -DOCPN_BUNDLE_TCDATA=ON
           - -DOCPN_CI_BUILD=ON
-          - -DOCPN_RELEASE=1.wx315
           - -DOCPN_FLATPAK=ON
+          - -DOCPN_ENABLE_SYSTEM_CMD_SOUND=OFF
           - -DOCPN_USE_SYSFS_PORTS=ON
           - -DBUILD_SHARED_LIBS=OFF
           - -DOCPN_TARGET_TUPLE=flatpak-x86_64-wx315;20.08;x86_64
