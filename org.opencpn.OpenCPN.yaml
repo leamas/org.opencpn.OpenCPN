@@ -104,7 +104,7 @@ modules:
       buildsystem: cmake
       builddir: true
       config-opts:
-          - -DOCPN_RELEASE=1.wx315
+          - -DOCPN_RELEASE=2.wx315
           - -DOCPN_BUNDLE_DOCS=ON
           - -DOCPN_BUNDLE_TCDATA=ON
           - -DOCPN_CI_BUILD=ON
@@ -139,3 +139,5 @@ modules:
             path: 0004-CMakeLists-Add-a-OCPN_RELEASE-option.patch
           - type: patch
             path: 0005-Add-wx315-to-target-ABI-specification.patch
+          - type: patch
+            path: 0006-Support-scaled-HDPI-displays-on-GTK3-and-MacOS-Retin.patch
