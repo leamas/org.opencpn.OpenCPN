@@ -46,13 +46,6 @@ modules:
         - type: archive
           url: https://github.com/libusb/libusb/archive/v1.0.22.tar.gz
           sha256: 3500f7b182750cd9ccf9be8b1df998f83df56a39ab264976bdb3307773e16f48
-    - name: portaudio
-      sources:
-          - type: archive
-            url: http://www.portaudio.com/archives/pa_stable_v190600_20161030.tgz
-            sha256: f5a21d7dcd6ee84397446fa1fa1a0675bb2e8a4a6dceb4305a8404698d8d1513
-      config-opts:
-          - --disable-static
 
     - name: wxGTK3
       sources:
