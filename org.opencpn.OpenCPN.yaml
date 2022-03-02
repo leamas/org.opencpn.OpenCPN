@@ -104,7 +104,7 @@ modules:
       buildsystem: cmake
       builddir: true
       config-opts:
-          - -DOCPN_RELEASE=2.wx315
+          - -DOCPN_RELEASE=3.wx315
           - -DOCPN_BUNDLE_DOCS=ON
           - -DOCPN_BUNDLE_TCDATA=ON
           - -DOCPN_CI_BUILD=ON
@@ -112,11 +112,16 @@ modules:
           - -DOCPN_ENABLE_SYSTEM_CMD_SOUND=OFF
           - -DOCPN_USE_SYSFS_PORTS=ON
           - -DBUILD_SHARED_LIBS=OFF
-          - -DOCPN_TARGET_TUPLE=flatpak-x86_64-wx315;20.08;x86_64
           - -DCMAKE_FIND_ROOT_PATH=/app
           - -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM=NEVER
           - -DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH
           - -DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=BOTH
+          - arch:
+              - x86_64:
+                  - -DOCPN_TARGET_TUPLE=flatpak-x86_64-wx315;20.08;x86_64
+              - aarch64:
+                  - -DOCPN_TARGET_TUPLE=flatpak-aarch64-wx315;20.08;x86_64
+
       build-options:
           cxxflags: -DFLATPAK
           cflags: -DFLATPAK
