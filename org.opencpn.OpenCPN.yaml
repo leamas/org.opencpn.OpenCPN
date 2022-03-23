@@ -134,7 +134,7 @@ modules:
       sources:
           - type: git
             url: https://github.com/OpenCPN/OpenCPN.git
-            tag: Release_5.6.0
+            tag: Beta_5.6.1_1
             disable-fsckobjects: true
           - type: patch
             paths:
@@ -142,4 +142,3 @@ modules:
               - 0003-ser_ports.cpp-Handle-kernel-interface-changes-2528.patch
               - 0004-CMakeLists-Add-a-OCPN_RELEASE-option.patch
               - 0005-Add-wx315-to-target-ABI-specification.patch
-              - 0006-Support-scaled-HDPI-displays-on-GTK3-and-MacOS-Retin.patch
