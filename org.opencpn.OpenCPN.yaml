@@ -50,24 +50,16 @@ modules:
     - name: wxGTK3
       sources:
           - type: archive
-            url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.tar.bz2
-            sha256: d7b3666de33aa5c10ea41bb9405c40326e1aeb74ee725bb88f90f1d50270a224
-          - type: patch
-            path: 0100-doxyfile-update.patch
-          - type: patch
-            path: 0101-Fix-missing-mouse-events-when-using-gesture-events.patch
-          - type: patch
-            path: 0102-warn-for-compiler-abi-mismatch.patch
-          - type: patch
-            path: 0103-Fix-wxGTK-build-after-WXSetInitialFittingClientSize.patch
-          - type: patch
-            path: 0104-Make-wxSizer-SetSizeHints-work-again.patch
+            url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.4/wxWidgets-3.0.4.tar.bz2
+            sha256: 96157f988d261b7368e5340afa1a0cad943768f35929c22841f62c25b17bf7f0
       config-opts:
           - --with-gtk=3
           - --with-opengl
           - --with-sdl
+          - --with-gnomeprint
           - --with-libmspack
           - --enable-intl
+          - --enable-no_deps
           - --disable-rpath
           - --enable-ipv6
       cleanup:
@@ -97,7 +89,7 @@ modules:
       buildsystem: cmake
       builddir: true
       config-opts:
-          - -DOCPN_RELEASE=3.wx315
+          - -DOCPN_RELEASE=4
           - -DOCPN_BUNDLE_DOCS=ON
           - -DOCPN_BUNDLE_TCDATA=ON
           - -DOCPN_CI_BUILD=ON
@@ -109,11 +101,6 @@ modules:
           - -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM=NEVER
           - -DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH
           - -DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=BOTH
-          - arch:
-              - x86_64:
-                  - -DOCPN_TARGET_TUPLE=flatpak-x86_64-wx315;20.08;x86_64
-              - aarch64:
-                  - -DOCPN_TARGET_TUPLE=flatpak-aarch64-wx315;20.08;x86_64
 
       build-options:
           cxxflags: -DFLATPAK
