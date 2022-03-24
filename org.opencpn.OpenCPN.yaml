@@ -89,7 +89,7 @@ modules:
       buildsystem: cmake
       builddir: true
       config-opts:
-          - -DOCPN_RELEASE=4
+          - -DOCPN_RELEASE=1
           - -DOCPN_BUNDLE_DOCS=ON
           - -DOCPN_BUNDLE_TCDATA=ON
           - -DOCPN_CI_BUILD=ON
@@ -120,4 +120,3 @@ modules:
             paths:
               - 0002-flatpak-Add-a-shell-wrapper.patch
               - 0004-CMakeLists-Add-a-OCPN_RELEASE-option.patch
-              - 0005-Add-wx315-to-target-ABI-specification.patch
