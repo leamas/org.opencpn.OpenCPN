@@ -139,6 +139,5 @@ modules:
           - type: patch
             paths:
               - 0002-flatpak-Add-a-shell-wrapper.patch
-              - 0003-ser_ports.cpp-Handle-kernel-interface-changes-2528.patch
               - 0004-CMakeLists-Add-a-OCPN_RELEASE-option.patch
               - 0005-Add-wx315-to-target-ABI-specification.patch
