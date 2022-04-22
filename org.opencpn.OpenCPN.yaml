@@ -88,7 +88,7 @@ modules:
       buildsystem: cmake
       builddir: true
       config-opts:
-          - -DOCPN_RELEASE=3
+          - -DOCPN_RELEASE=0
           - -DOCPN_BUNDLE_DOCS=ON
           - -DOCPN_BUNDLE_TCDATA=ON
           - -DOCPN_CI_BUILD=ON
@@ -112,7 +112,7 @@ modules:
       sources:
           - type: git
             url: https://github.com/OpenCPN/OpenCPN.git
-            tag: Release_5.6.0
+            tag: Release_5.6.2
             disable-fsckobjects: true
           - type: patch
             path: 0002-flatpak-Add-a-shell-wrapper.patch
