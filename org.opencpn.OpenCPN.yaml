@@ -117,6 +117,4 @@ modules:
           - type: patch
             path: 0002-flatpak-Add-a-shell-wrapper.patch
           - type: patch
-            path: 0003-ser_ports.cpp-Handle-kernel-interface-changes-2528.patch
-          - type: patch
             path: 0004-CMakeLists-Add-a-OCPN_RELEASE-option.patch
