@@ -36,7 +36,6 @@ add-extensions:
 
 modules:
     - shared-modules/glu/glu-9.json
-
     - name: libusb
       config-opts:
         - --disable-static
@@ -46,6 +45,15 @@ modules:
         - type: archive
           url: https://github.com/libusb/libusb/archive/v1.0.22.tar.gz
           sha256: 3500f7b182750cd9ccf9be8b1df998f83df56a39ab264976bdb3307773e16f48
+    - name: portaudio
+      sources:
+          - type: archive
+            url: http://www.portaudio.com/archives/pa_stable_v190600_20161030.tgz
+            sha256: f5a21d7dcd6ee84397446fa1fa1a0675bb2e8a4a6dceb4305a8404698d8d1513
+      config-opts:
+        - --disable-static
+        - --disable-udev
+        - --prefix=/app
 
     - name: wxGTK3
       sources:
@@ -89,7 +97,7 @@ modules:
       buildsystem: cmake
       builddir: true
       config-opts:
-          - -DOCPN_RELEASE=1
+          - -DOCPN_RELEASE=2
           - -DOCPN_BUNDLE_DOCS=ON
           - -DOCPN_BUNDLE_TCDATA=ON
           - -DOCPN_CI_BUILD=ON
@@ -101,7 +109,6 @@ modules:
           - -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM=NEVER
           - -DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH
           - -DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=BOTH
-
       build-options:
           cxxflags: -DFLATPAK
           cflags: -DFLATPAK
@@ -114,9 +121,14 @@ modules:
       sources:
           - type: git
             url: https://github.com/OpenCPN/OpenCPN.git
-            tag: Beta_5.6.1_4
+            tag: Release_5.6.2
             disable-fsckobjects: true
           - type: patch
             paths:
-              - 0002-flatpak-Add-a-shell-wrapper.patch
-              - 0004-CMakeLists-Add-a-OCPN_RELEASE-option.patch
+              - patches/0002-flatpak-Add-a-shell-wrapper.patch
+              - patches/0003-CMakeLists-Add-a-OCPN_RELEASE-option.patch
+              - patches/0004-Allow-loading-GPX-TrackPoint-with-unspecified-timest.patch
+              - patches/0005-Disable-buttons-in-case-no-more-user-defined-chart-g.patch
+              - patches/0006-Tracking-can-be-started-before-the-main-toolbar-is-c.patch
+              - patches/0007-Take-out-a-doubled-definition-of-the-serial-Datastre.patch
+              - patches/0008-Do-not-process-NULL-SignalK-nav-data.patch
