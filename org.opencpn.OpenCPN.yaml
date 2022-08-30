@@ -73,7 +73,7 @@ modules:
       cleanup:
           - /include/
 
-   - name: portaudio
+    - name: portaudio
       config-opts:
           - --disable-static
           - --without-oss
