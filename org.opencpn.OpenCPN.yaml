@@ -115,6 +115,11 @@ modules:
             tag: Release_5.6.2
             disable-fsckobjects: true
           - type: patch
-            path: 0002-flatpak-Add-a-shell-wrapper.patch
-          - type: patch
-            path: 0004-CMakeLists-Add-a-OCPN_RELEASE-option.patch
+            paths:
+              - patches/0002-flatpak-Add-a-shell-wrapper.patch
+              - patches/0003-CMakeLists-Add-a-OCPN_RELEASE-option.patch
+              - patches/0004-Allow-loading-GPX-TrackPoint-with-unspecified-timest.patch
+              - patches/0005-Disable-buttons-in-case-no-more-user-defined-chart-g.patch
+              - patches/0006-Tracking-can-be-started-before-the-main-toolbar-is-c.patch
+              - patches/0007-Take-out-a-doubled-definition-of-the-serial-Datastre.patch
+              - patches/0008-Do-not-process-NULL-SignalK-nav-data.patch
