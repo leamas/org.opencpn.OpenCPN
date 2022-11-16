@@ -61,6 +61,9 @@ modules:
           - type: archive
             url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.1/wxWidgets-3.2.1.tar.bz2
             sha256: c229976bb413eb88e45cb5dfb68b27890d450149c09b331abd751e7ae0f5fa66
+          - type: patch
+            paths:
+              - patches/0101-Add-wxDEPRECATED_EXPORT_CORE-macro-for-wxTransformMa.patch
       config-opts:
           - --with-gtk=3
           - --with-opengl
@@ -103,6 +106,8 @@ modules:
           - -DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH
           - -DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=BOTH
       build-options:
+          build-args:
+              - --share=network
           cxxflags: -DFLATPAK
           cflags: -DFLATPAK
           env:
@@ -114,14 +119,9 @@ modules:
       sources:
           - type: git
             url: https://github.com/OpenCPN/OpenCPN.git
-            tag: Release_5.6.2
+            #tag: V5.1.518_Beta
+            commit: 022feb2ef7be1e5f6ec65c3c138b0ec808aec1a7
             disable-fsckobjects: true
           - type: patch
             paths:
               - patches/0002-flatpak-Add-a-shell-wrapper.patch
-              - patches/0003-CMakeLists-Add-a-OCPN_RELEASE-option.patch
-              - patches/0004-Allow-loading-GPX-TrackPoint-with-unspecified-timest.patch
-              - patches/0005-Disable-buttons-in-case-no-more-user-defined-chart-g.patch
-              - patches/0006-Tracking-can-be-started-before-the-main-toolbar-is-c.patch
-              - patches/0007-Take-out-a-doubled-definition-of-the-serial-Datastre.patch
-              - patches/0008-Do-not-process-NULL-SignalK-nav-data.patch
