@@ -59,16 +59,14 @@ modules:
     - name: wxGTK3
       sources:
           - type: archive
-            url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.4/wxWidgets-3.0.4.tar.bz2
-            sha256: 96157f988d261b7368e5340afa1a0cad943768f35929c22841f62c25b17bf7f0
+            url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.1/wxWidgets-3.2.1.tar.bz2
+            sha256: c229976bb413eb88e45cb5dfb68b27890d450149c09b331abd751e7ae0f5fa66
       config-opts:
           - --with-gtk=3
           - --with-opengl
           - --with-sdl
-          - --with-gnomeprint
           - --with-libmspack
           - --enable-intl
-          - --enable-no_deps
           - --disable-rpath
           - --enable-ipv6
       cleanup:
@@ -92,7 +90,7 @@ modules:
       buildsystem: cmake
       builddir: true
       config-opts:
-          - -DOCPN_RELEASE=2
+          - -DOCPN_RELEASE=1
           - -DOCPN_BUNDLE_DOCS=ON
           - -DOCPN_BUNDLE_TCDATA=ON
           - -DOCPN_CI_BUILD=ON
