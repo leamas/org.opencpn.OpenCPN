@@ -89,6 +89,13 @@ modules:
           - /include
           - '*.la'
 
+    - name: Gtest
+      buildsystem: cmake
+      sources:
+          - type: git
+            url: https://github.com/google/googletest.git
+            tag: release-1.12.1
+
     - name: opencpn
       buildsystem: cmake
       builddir: true
@@ -106,8 +113,6 @@ modules:
           - -DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH
           - -DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=BOTH
       build-options:
-          build-args:
-              - --share=network
           cxxflags: -DFLATPAK
           cflags: -DFLATPAK
           env:
