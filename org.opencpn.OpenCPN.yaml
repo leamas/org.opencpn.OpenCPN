@@ -89,7 +89,7 @@ modules:
           - /include
           - '*.la'
 
-    - name: gtest
+    - name: Gtest
       buildsystem: cmake
       sources:
           - type: git
