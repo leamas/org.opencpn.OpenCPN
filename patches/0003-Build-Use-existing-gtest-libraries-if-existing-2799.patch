@@ -1,0 +1,107 @@
+From b4230431df52babdb06570f12b169cf4ba7dc55e Mon Sep 17 00:00:00 2001
+From: Alec Leamas <leamas.alec@nowhere.net>
+Date: Fri, 4 Nov 2022 22:15:15 +0100
+Subject: [PATCH] Build: Use existing gtest libraries if existing (#2799).
+
+If gtest is available, avoid downloading sources and use the
+existing libraries instead.
+
+This does not handle the gtest sources installed in
+Debian/Ubuntu.
+
+Closes: #2799
+---
+ CMakeLists.txt            |  1 +
+ libs/gtest/CMakeLists.txt | 35 +++++++++++++++++++++++++++++++++++
+ test/CMakeLists.txt       | 12 +++---------
+ 3 files changed, 39 insertions(+), 9 deletions(-)
+ create mode 100644 libs/gtest/CMakeLists.txt
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 91e88819a..03caecc43 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1879,6 +1879,7 @@ if (UNIX)
+ endif (UNIX)
+ 
+ if (OCPN_BUILD_TEST)
++  add_subdirectory(libs/gtest)
+   add_subdirectory(test)
+   add_custom_target(run-tests
+     COMMAND ctest  -C $<CONFIG> -E tests
+diff --git a/libs/gtest/CMakeLists.txt b/libs/gtest/CMakeLists.txt
+new file mode 100644
+index 000000000..2c39e496e
+--- /dev/null
++++ b/libs/gtest/CMakeLists.txt
+@@ -0,0 +1,35 @@
++cmake_minimum_required(VERSION 3.1)
++
++if (TARGET ocpn::gtest)
++    return ()
++endif ()
++
++if (NOT CMAKE_MODULE_PATH)
++  set (CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../cmake)
++endif ()
++
++add_library(_OCPN_GTEST_IF INTERFACE)
++add_library(ocpn::gtest ALIAS _OCPN_GTEST_IF)
++
++find_library(GTEST_LIB gtest)
++find_library(GTEST_MAIN gtest_main)
++find_path(GTEST_HDR NAME gtest PATH_SUFFIXES gtest)
++
++if (GTEST_LIB AND GTEST_MAIN AND GTEST_HDR)
++  message(STATUS "Using system gtest libraries")
++  target_include_directories(_OCPN_GTEST_IF INTERFACE ${GTEST_HDR})
++  target_link_libraries(_OCPN_GTEST_IF INTERFACE ${GTEST_LIB})
++  target_link_libraries(_OCPN_GTEST_IF INTERFACE ${GTEST_MAIN})
++else ()
++  message(STATUS "Downloading and building gtest from source")
++  include(FetchContent)
++  set(CMAKE_CXX_STANDARD 14)
++  FetchContent_Declare(
++    googletest
++    GIT_REPOSITORY https://github.com/google/googletest.git
++    GIT_TAG release-1.12.1
++  )
++  set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
++  FetchContent_MakeAvailable(googletest)
++  target_link_libraries(_OCPN_GTEST_IF GTest::gtest_main)
++endif ()  
+diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
+index b83b36545..cd3e14e02 100644
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -1,16 +1,10 @@
+ cmake_minimum_required(VERSION 3.14)
+ 
+-
+ project(opencpn_tests)
+ set(CMAKE_CXX_STANDARD 14)
+-include(FetchContent)
+-FetchContent_Declare(
+-  googletest
+-  GIT_REPOSITORY https://github.com/google/googletest.git
+-  GIT_TAG release-1.12.1
+-)
+ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+-FetchContent_MakeAvailable(googletest)
++message(STATUS "Building tests")
++
+ 
+ enable_testing ()
+ 
+@@ -112,7 +106,7 @@ else (NOT WIN32)
+ endif (NOT WIN32)
+ 
+ 
+-target_link_libraries(tests PRIVATE GTest::gtest_main)
++target_link_libraries(tests PRIVATE ocpn::gtest)
+ include(GoogleTest)
+ gtest_discover_tests(tests)
+ 
+-- 
+2.38.1
+
