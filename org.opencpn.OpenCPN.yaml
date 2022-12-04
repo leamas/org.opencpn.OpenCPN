@@ -125,9 +125,10 @@ modules:
           - type: git
             url: https://github.com/OpenCPN/OpenCPN.git
             #tag: V5.1.518_Beta
-            commit: 022feb2ef7be1e5f6ec65c3c138b0ec808aec1a7
+            commit: e64b4d29c84a0af9400e75aaa90030b64f8f3e97
             disable-fsckobjects: true
           - type: patch
             paths:
               - patches/0002-flatpak-Add-a-shell-wrapper.patch
               - patches/0003-Build-Use-existing-gtest-libraries-if-existing-2799.patch
+              - patches/0004-CMakeLists-appdata-Add-required-timestamp-to-appdata.patch
