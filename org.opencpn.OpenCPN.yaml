@@ -130,4 +130,3 @@ modules:
           - type: patch
             paths:
               - patches/0002-flatpak-Add-a-shell-wrapper.patch
-              - patches/0003-Build-Use-existing-gtest-libraries-if-existing-2799.patch
