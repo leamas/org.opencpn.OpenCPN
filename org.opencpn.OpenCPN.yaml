@@ -125,7 +125,7 @@ modules:
           - type: git
             url: https://github.com/OpenCPN/OpenCPN.git
             #tag: V5.1.518_Beta
-            commit: e64b4d29c84a0af9400e75aaa90030b64f8f3e97
+            commit: f5cf791cfd263341de6bedae5387c2743da4557c
             disable-fsckobjects: true
           - type: patch
             paths:
