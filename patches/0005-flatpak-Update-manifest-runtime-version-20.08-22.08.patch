@@ -1,0 +1,25 @@
+From 4052bbc0ed31e9e2982de2abdb82ac05cafa4207 Mon Sep 17 00:00:00 2001
+From: Alec Leamas <leamas.alec@nowhere.net>
+Date: Thu, 22 Dec 2022 20:56:20 +0100
+Subject: [PATCH] flatpak: Update manifest runtime-version 20.08 -> 22.08
+
+---
+ flatpak/org.opencpn.OpenCPN.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/flatpak/org.opencpn.OpenCPN.yaml b/flatpak/org.opencpn.OpenCPN.yaml
+index 1d523bc63..2937c379b 100644
+--- a/flatpak/org.opencpn.OpenCPN.yaml
++++ b/flatpak/org.opencpn.OpenCPN.yaml
+@@ -12,7 +12,7 @@
+ 
+ app-id: org.opencpn.OpenCPN
+ runtime: org.freedesktop.Platform
+-runtime-version: 20.08
++runtime-version: 22.08
+ sdk: org.freedesktop.Sdk
+ command: opencpn.sh
+ 
+-- 
+2.38.1
+
