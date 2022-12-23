@@ -8,7 +8,6 @@
 
 # This manifest is used to build the official flathub package.
 
-
 app-id: org.opencpn.OpenCPN
 runtime: org.freedesktop.Platform
 runtime-version: "22.08"
@@ -130,3 +129,7 @@ modules:
           - type: patch
             paths:
               - patches/0002-flatpak-Add-a-shell-wrapper.patch
+              - patches/0003-Build-Use-existing-gtest-libraries-if-existing-2799.patch
+              - patches/0004-CMakeLists-appdata-Add-required-timestamp-to-appdata.patch
+              - patches/0005-flatpak-Update-manifest-runtime-version-20.08-22.08.patch
+
