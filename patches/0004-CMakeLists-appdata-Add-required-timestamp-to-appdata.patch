@@ -1,0 +1,77 @@
+From cf4d986ea1f34f8b13f1083bd22cc083ef2df2be Mon Sep 17 00:00:00 2001
+From: Alec Leamas <leamas.alec@nowhere.net>
+Date: Sun, 4 Dec 2022 22:17:53 +0100
+Subject: [PATCH] CMakeLists, appdata: Add required timestamp to appdata
+
+---
+ CMakeLists.txt              |  6 +++---
+ cmake/Utils.cmake           | 15 ---------------
+ data/opencpn.appdata.xml.in |  3 ++-
+ 3 files changed, 5 insertions(+), 19 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 0287ed1bf..23381d913 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -552,9 +552,10 @@ set(PREFIX_LIB "${CMAKE_INSTALL_FULL_LIBDIR}")
+ #
+ include(${CMAKE_SOURCE_DIR}/VERSION.cmake)
+ 
++string(TIMESTAMP VERSION_DATE "%Y-%m-%d")
++string(TIMESTAMP UNIX_TIMESTAMP "%s")
+ if (OCPN_CI_BUILD)
+   include(Utils)
+-  today(DATE)
+   commit_id(COMMIT)
+   build_num(BUILD_NUMBER)
+   if (NOT "${OCPN_RELEASE}" STREQUAL "")
+@@ -564,8 +565,7 @@ if (OCPN_CI_BUILD)
+   if (NOT "${BUILD_NUMBER}" STREQUAL "")
+     set(VERSION_TAIL "-${BUILD_NUMBER}${VERSION_TAIL}")
+   endif ()
+-  string(STRIP "{DATE}" VERSION_DATE)
+-endif (OCPN_CI_BUILD)
++endif ()
+ 
+ set(
+   PACKAGE_VERSION
+diff --git a/cmake/Utils.cmake b/cmake/Utils.cmake
+index 68dff8081..66a5ee819 100644
+--- a/cmake/Utils.cmake
++++ b/cmake/Utils.cmake
+@@ -1,18 +1,3 @@
+-MACRO (TODAY RESULT)
+-    IF (CMAKE_HOST_WIN32)
+-        EXECUTE_PROCESS(COMMAND "cmd" "/C" "date /T" OUTPUT_VARIABLE ${RESULT})
+-        string(REGEX REPLACE "(..)/(..)/(....).*" "\\3-\\2-\\1"
+-               ${RESULT} ${${RESULT}})
+-    ELSEIF(UNIX OR MINGW)
+-        EXECUTE_PROCESS(COMMAND "date" "-u" "+%d/%m/%Y" OUTPUT_VARIABLE ${RESULT})
+-        string(REGEX REPLACE "(..)/(..)/(....).*" "\\3-\\2-\\1"
+-               ${RESULT} ${${RESULT}})
+-    ELSE ()
+-        MESSAGE(SEND_ERROR "date not implemented")
+-        SET(${RESULT} 000000)
+-    ENDIF ()
+-ENDMACRO (TODAY)
+-
+ MACRO (COMMIT_ID RESULT)
+     # Get the latest abbreviated commit hash of the working branch
+     execute_process(
+diff --git a/data/opencpn.appdata.xml.in b/data/opencpn.appdata.xml.in
+index e568d7ee5..dac998df1 100644
+--- a/data/opencpn.appdata.xml.in
++++ b/data/opencpn.appdata.xml.in
+@@ -33,7 +33,8 @@
+     </p>
+   </description>
+   <releases>
+-    <release version="@PACKAGE_VERSION@" date="@VERSION_DATE@">
++      <release version="@PACKAGE_VERSION@" date="@VERSION_DATE@"
++          timestamp="@UNIX_TIMESTAMP@">
+       <description>
+         <p>The latest upstream commit.</p>
+       </description>
+-- 
+2.38.1
+
