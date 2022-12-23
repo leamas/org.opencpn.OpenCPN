@@ -8,7 +8,6 @@
 
 # This manifest is used to build the official flathub package.
 
-
 app-id: org.opencpn.OpenCPN
 runtime: org.freedesktop.Platform
 runtime-version: "22.08"
