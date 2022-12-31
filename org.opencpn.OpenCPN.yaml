@@ -123,10 +123,9 @@ modules:
       sources:
           - type: git
             url: https://github.com/OpenCPN/OpenCPN.git
-            tag: Beta_5.7.1_1
-            #commit: d97770b2b39a6417eac40eaf0cad71cead36351a
+            #tag: Beta_5.7.1_1
+            commit: 5d6ab03b4f34b2e7a13f9db06eb778d74178443c
             disable-fsckobjects: true
           - type: patch
             paths:
               - patches/0002-flatpak-Add-a-shell-wrapper.patch
-              - patches/0005-flatpak-Update-manifest-runtime-version-20.08-22.08.patch
