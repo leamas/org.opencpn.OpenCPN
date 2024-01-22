@@ -22,6 +22,7 @@ finish-args:
     - --socket=x11
     - --socket=pulseaudio
     - --filesystem=home
+    - --share=ipc
     - --share=network
     - --device=all
     - --allow=canbus
@@ -119,7 +120,7 @@ modules:
       buildsystem: cmake
       builddir: true
       config-opts:
-          - -DOCPN_RELEASE=2
+          - -DOCPN_RELEASE=3
           - -DOCPN_BUNDLE_DOCS=ON
           - -DOCPN_BUNDLE_TCDATA=ON
           - -DOCPN_CI_BUILD=ON
